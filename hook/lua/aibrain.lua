@@ -2,7 +2,7 @@ LOG('Loading SepAI custom AI brain...')
 
 local OriginalAIBrain = AIBrain
 
-local SepAIBrainFunctions = import('/mods/SepAI/lua/brain/brain.lua')
+local NewAIBrainFunctions = import('/mods/SepAI/lua/AI/brain.lua')
 
 AIBrain = Class(OriginalAIBrain) {
     OnCreateAI = function(self, brainName)
@@ -27,8 +27,8 @@ AIBrain = Class(OriginalAIBrain) {
     InitCustomBrainFunctions = function(self)
         LOG('SepAI: Inside InitCustomBrainFunctions...')
 
-        if SepAIBrainFunctions and SepAIBrainFunctions.SetupCustomBrain then
-            SepAIBrainFunctions.SetupCustomBrain(self)
+        if NewAIBrainFunctions and NewAIBrainFunctions.SetupCustomBrain then
+            NewAIBrainFunctions.SetupCustomBrain(self)
             LOG('SepAI: Custom AI Brain functionality initialized for ' .. self:GetArmyIndex())
         else
             LOG('SepAI: SetupCustomBrain function not found, check your brain.lua for errors.')
