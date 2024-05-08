@@ -1,42 +1,46 @@
+-- Import necessary modules
 local AIBrain = import("/lua/aibrain.lua").AIBrain
-
 local EconomicBuilders = import('/mods/SepAI/lua/builders/economicbuilders.lua').EconomicBuilders
 local ACUBuilders = import('/mods/SepAI/lua/builders/acubuild.lua').ACUBuilders
 local LandAttackBuilders = import('/mods/SepAI/lua/builders/landattackbuilders.lua').LandAttackBuilders
 
-MyCustomAIBrain = Class(AIBrain) {
+-- Define a new class for the custom AI brain
+NewAIBrain = Class(AIBrain) {
+
+    -- Override the OnCreateAI function
     OnCreateAI = function(self, brainName)
-        AIBrain.OnCreateAI(self, brainName)
-        self:InitCustomBrain()
-        LOG("MyCustomAIBrain: Initialization complete for brainName " .. tostring(brainName))
+        AIBrain.OnCreateAI(self, brainName) -- Call the original function
+        self:InitCustomBrain() -- Initialize custom brain
+        LOG("NewAIBrain: Initialization complete for brainName " .. tostring(brainName))
     end,
 
+    -- Initialize custom brain functions
     InitCustomBrain = function(self)
-        LOG("MyCustomAIBrain: Custom brain initialization started.")
+        LOG("NewAIBrain: Custom brain initialization started.")
         self:SetupInitialBuildOrder()
         self:ForkThread(self.PeriodicTasks)
-        LOG("MyCustomAIBrain: Builder Managers and Periodic Tasks initialized.")
+        LOG("NewAIBrain: Builder Managers and Periodic Tasks initialized.")
     end, 
 
-        self.BuilderManagers = {
-            Economy = {
-                Builders = EconomicBuilders,
-            },
-            ACU = {
-                Builders = ACUBuilders,
-            },
-            LandFactory = {
-                Builders = LandAttackBuilders,
-            },
-        }
+    -- Define builder managers
+    BuilderManagers = {
+        Economy = { Builders = EconomicBuilders },
+        ACU = { Builders = ACUBuilders },
+        LandFactory = { Builders = LandAttackBuilders }
+    },
 
-        self:AddBuilderGroup('ACUBuilderGroupName', true, self.BuilderManagers.ACU.Builders)
+    -- Add builder group
+    AddBuilderGroup = function(self, groupName, active, builders)
+        -- Implement your logic for adding builder groups here
     end,
 
+    -- Setup initial build order
     SetupInitialBuildOrder = function(self)
-        LOG('MyCustomAIBrain: Setting up initial build order')
+        LOG('NewAIBrain: Setting up initial build order')
+        -- Implement your logic for setting up initial build order here
     end,
 
+    -- Periodic tasks
     PeriodicTasks = function(self)
         while not self:IsDefeated() do
             WaitSeconds(10) 
@@ -44,7 +48,9 @@ MyCustomAIBrain = Class(AIBrain) {
         end
     end,
 
+    -- Evaluate strategic position
     EvaluateStrategicPosition = function(self)
-        LOG('MyCustomAIBrain: Evaluating strategic position')
+        LOG('NewAIBrain: Evaluating strategic position')
+        -- Implement your logic for evaluating strategic position here
     end,
 }
