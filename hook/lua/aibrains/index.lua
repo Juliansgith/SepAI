@@ -1,5 +1,5 @@
-local NewAIBrain = import('/mods/SepAI/lua/AI/brain.lua').NewAIBrain
+local NewAIBrain = import('/mods/SepAI/lua/AI/SepBrain.lua')
 
 keyToBrain = keyToBrain or {}
-keyToBrain["sepai"] = NewAIBrain
-keyToBrain["sepaicheat"] = NewAIBrain
+keyToBrain["sepai"] = SepBrain.NewAIBrain
+keyToBrain["sepaicheat"] = SepBrain.NewAIBrain

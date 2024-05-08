@@ -8,8 +8,8 @@ local LandAttackBuilders = import('/mods/SepAI/lua/builders/landattackbuilders.l
 NewAIBrain = Class(AIBrain) {
 
     -- Override the OnCreateAI function
-    OnCreateAI = function(self, brainName)
-        AIBrain.OnCreateAI(self, brainName) -- Call the original function
+    OnCreateAI = function(self, planName)
+        AIBrain.OnCreateAI(self, planName) -- Call the original function
         self:InitCustomBrain() -- Initialize custom brain
         LOG("NewAIBrain: Initialization complete for brainName " .. tostring(brainName))
     end,
