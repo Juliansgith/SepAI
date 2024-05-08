@@ -1,4 +1,4 @@
-local SepAIBrain = import('/mods/SepAI/lua/brain/brain.lua')
+local SepAIBrain = import('/mods/SepAI/lua/AI/brain.lua')
 
 keyToBrain = keyToBrain or {}
 keyToBrain["sepai"] = SepAIBrain.NewAIBrain 

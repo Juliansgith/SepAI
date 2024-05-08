@@ -1,4 +1,4 @@
-local AIBrain = import('/lua/ai/aibrain.lua').AIBrain
+local AIBrain = import("/lua/aibrain.lua").AIBrain
 
 local EconomicBuilders = import('/mods/SepAI/lua/builders/economicbuilders.lua').EconomicBuilders
 local ACUBuilders = import('/mods/SepAI/lua/builders/acubuild.lua').ACUBuilders
