@@ -1,17 +1,16 @@
 AI = {
-    Name = "SepAI",
-    Version = "1.0.0",
-    AIList = {
+  Name = 'SepAI',
+  Version = '1.0.0',
+  AIList = {
       {
-        key = 'sepai_normal',
-        name = "SepAI: Standard",
+          key = 'sepstandard',
+          name = "SepAI: Standard",
       },
-    },
-    CheatAIList = {
+  },
+  CheatAIList = {
       {
-        key = 'sepai_cheat',
-        name = "SepAI: Cheating",
+          key = 'sepstandardcheat',
+          name = "SepAI: Standard - Cheat",
       },
-    },
-  }
-  
+  },
+}
