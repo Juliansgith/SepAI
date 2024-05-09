@@ -1,4 +1,4 @@
-local BaseAIBrain = import('/lua/sim/Brain.lua').Brain
+local BaseAIBrain = import("/lua/aibrains/base-ai.lua").AIBrain
 
 -- Custom AI modules
 local BaseTemplates = import('/mods/SepAI/lua/AI/AIBaseTemplates/BaseTemplates.lua')
@@ -7,28 +7,35 @@ local PlatoonTemplates = import('/mods/SepAI/lua/AI/platoontemplates/sepaiplatoo
 local SepAI_Map = import('/mods/SepAI/lua/AI/SepAIMap.lua')
 
 -- Extending the base AI brain with custom behaviors
-SepAIBrain = Class(BaseAIBrain) {
+NewAIBrain = Class(BaseAIBrain) {
+    OnBeginSession = function(self)
+        BaseAIBrain.OnBeginSession(self)
+    end,
 
+    OnDefeat = function(self)
+        BaseAIBrain.OnDefeat(self)
+    end,
     -- Initialization function for AI
-    OnCreate = function(self)
-        BaseAIBrain.OnCreate(self)
-        LOG('SepAI: OnCreate Initialization started')
+    OnCreateAI = function(self, planName)
+        BaseAIBrain.OnCreateAI(self, planName)  -- Calling the superclass's method with planName
+        LOG('SepAI: OnCreateAI Initialization started')
+        self.SepAI = true
 
         -- Initialize AI base templates and builders
         self.BaseTemplates = BaseTemplates
         self.Builders = Builders
         self.PlatoonTemplates = PlatoonTemplates
-        
+
         if not BaseTemplates then
             LOG('ERROR: SepAI base templates not loaded correctly')
             return
         end
         -- Map setup for initial map awareness
-        SepAI_Map.SetupMap(self)
+        ForkThread(SepAI_Map.SetupMap, self)
 
         -- Additional custom setup can go here
         self:InitCustomAI()
-        LOG('SepAI: OnCreate Initialization completed')
+        LOG('SepAI: OnCreateAI Initialization completed')
     end,
 
     -- Custom initialization for specific strategies or adjustments
