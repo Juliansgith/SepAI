@@ -60,6 +60,7 @@ BuilderGroup {
             }
         }
     },
+    LOG('SepAI: ACU builder setup complete')
 }
 
 -- Builders for factories to produce specific units
@@ -100,6 +101,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
     },
+    LOG('SepAI: Factory builders setup complete')
 }
 
 -- Builders for engineers to handle economy and base expansion
@@ -160,5 +162,6 @@ BuilderGroup {
             }
         }
     },
+    LOG('SepAI: Engineer economy builders setup complete')
 }
 
